@@ -1,4 +1,4 @@
-import Rect from 'react'
+import React from 'react'
 
 export const TopBar = () => {
     return(
