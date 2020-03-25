@@ -1,6 +1,9 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 
-export const Category = (props) => {
+export const Category = ({match}) => {
+    useEffect(() => {
+        console.log(match)
+    },[])
     return (
         <div>Category page</div>
     )

@@ -1,10 +1,10 @@
 import React from 'react';
-
+import {CategoryListItem} from './CategoryListItem';
 
 export const Categories = () => {
     return(
         <div className="categories">
-            this is the categories
+            <CategoryListItem iconName="bottle" title="Test Icon" />
         </div>
     )
 }

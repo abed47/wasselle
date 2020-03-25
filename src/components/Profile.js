@@ -23,8 +23,9 @@ export const Profile = () => {
     }
 
     const handleLogout = () => {
-        firebase.auth().signOut()
-        setSindedIn(!isSignedIn)
+        firebase.auth().signOut();
+        setSindedIn(!isSignedIn);
+        localStorage.removeItem('user');
     }
 
     const handleLogin = async () => {
