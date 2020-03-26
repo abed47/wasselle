@@ -5,14 +5,14 @@ import {Cart} from './components/Cart';
 import {Profile} from './components/Profile';
 import {Home} from './components/Home';
 import {TopBar} from './components/TopBar';
-import {UserContext} from './context/UserContext';
+import {MainContextProvider} from './context';
 import {Category} from './components/Category';
 import './App.scss';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 function App() {
   return (
     <Router>
-      <UserContext.Provider>
+      <MainContextProvider>
         <div className="App">
           <TopBar/>
             <Switch>
@@ -24,7 +24,7 @@ function App() {
             </Switch>
           <BottomNav />
         </div>
-      </UserContext.Provider>
+      </MainContextProvider>
     </Router>
   );
 }
