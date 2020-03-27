@@ -57,8 +57,8 @@ export const CartListItem = (props) => {
     return (
         <div className="cart__item_wrapper">
                 <Modal 
-                ariaHideApp={false}
-                style={modalStyle} isOpen={modalOptions.isOpen}>
+                    ariaHideApp={false}
+                    style={modalStyle} isOpen={modalOptions.isOpen}>
                     <p className="modal__title">Are you sure you want to remove this is item?</p>
                     <div className="modal__buttons__container">
                         <button className="button__cancel" onClick={() => {cancelRemove()}} >Cancel</button>

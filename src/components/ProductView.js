@@ -21,12 +21,14 @@ export const ProductView = props => {
 
     function addToCart(){
         let item = {};
+        item.name = props.selectedItem.name
         item.imgPath = props.selectedItem.imgPath;
         item.itemId = props.selectedItem.id;
         item.orderedQuantity = count;
         item.unitMeasure = props.selectedItem.unitMeasure;
         item.unitPrice = props.selectedItem.unitPrice;
-        additems(item)
+        additems(item,() => {props.selectedItem.handleClose()})
+        
     }
 
 

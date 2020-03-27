@@ -29,13 +29,21 @@ export const MainContextProvider = props => {
         setCart(updatedCart)
     }
 
-    function additems(item){
-        console.log(item)
+    function additems(item,callback){
+        let itemExist = cart.findIndex(cartItem => cartItem.itemId === item.itemId)
+        if(itemExist < 0){
+            let updatedCart = [...cart,item]
+            setCart(updatedCart)
+            return callback()
+        }
+        let updatedCart = cart;
+        updatedCart[itemExist].orderedQuantity = updatedCart[itemExist].orderedQuantity + item.orderedQuantity
+        setCart(updatedCart)
+        return callback()
     }
 
     useEffect(() => {
         getCartTotal(cart)
-        console.log(cart)
     },[cart])
 
     function getCartTotal(arr){
