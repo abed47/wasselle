@@ -18,16 +18,14 @@ body,html{
     position: fixed;
     bottom: 0;
     width: 100%;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     height: 50px;
-    justify-content: center;
-    align-items: center;
 
     .nav-link{
+        transition: border 200ms;
         @include no-select;
         margin: 0;
-        margin-left: 5%;
-        margin-right: 5%;
         color: white;
         display: flex;
         flex-wrap: wrap;
@@ -36,9 +34,29 @@ body,html{
         justify-items: center;
         text-align: center;
         height: 100%;
-        padding-left: 1%;
-        padding-right: 1%;
         text-decoration: none;
+
+        &__icon{
+            position: relative;
+            text-align: center;
+            align-self: center;
+        }
+        &__badge{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgb(224, 36, 36);
+            color: white;
+            position: absolute;
+            font-family: $base-font-bold;
+            font-size: 12px;
+            padding: 2px;
+            border-radius: 25px;
+            width: 15px;
+            height: 15px;
+            top: -5px;
+            right: -15px;
+        }
     }
 
     .icon{
@@ -49,6 +67,7 @@ body,html{
     .active{
         border-top: 5px solid white;
     }
+    
 
     Link{
         text-decoration: none;

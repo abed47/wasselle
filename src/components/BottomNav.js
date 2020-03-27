@@ -1,7 +1,15 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import {MainContext} from './../context'
 import {FaHome, FaUser, FaCartArrowDown, FaListAlt} from 'react-icons/fa'
 export const BottomNav = () => {
+
+    function handleCart(cart){
+        if(cart.cart.length){
+            return(<span className="nav-link__badge">{cart.cart.length}</span>)
+        }
+    }
+
     return (
         <nav className="bottom-nav">
             <NavLink exact to="/" className="nav-link">
@@ -15,7 +23,15 @@ export const BottomNav = () => {
             </NavLink>
 
             <NavLink to="/cart" className="nav-link">
-                <FaCartArrowDown className="icon"/>
+                <span className="nav-link__icon">
+                    <MainContext.Consumer>
+                        {context => 
+                            handleCart(context.cart)
+                        }
+                    </MainContext.Consumer>
+             
+                    <FaCartArrowDown className="icon"/>
+                </span>
                 <span className="nav-title">Cart</span>
             </NavLink>
 
