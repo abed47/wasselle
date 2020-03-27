@@ -19,6 +19,16 @@ export const ProductView = props => {
         setCount(count - 1)
     }
 
+    function addToCart(){
+        let item = {};
+        item.imgPath = props.selectedItem.imgPath;
+        item.itemId = props.selectedItem.id;
+        item.orderedQuantity = count;
+        item.unitMeasure = props.selectedItem.unitMeasure;
+        item.unitPrice = props.selectedItem.unitPrice;
+        additems(item)
+    }
+
 
     return (
         <div className="product__display">
@@ -34,7 +44,7 @@ export const ProductView = props => {
                     <span className="controlls__count">{count}</span>
                     <span className="controlls__deduce" onClick={() => incrementCount()}><FaPlus/></span>
                 </div>
-                <button className="button__add__to__cart">ADD</button>
+                <button className="button__add__to__cart" onClick={() => addToCart()}>ADD</button>
             </div>
             <div className="product__display__description">
                 <h5>Details</h5>

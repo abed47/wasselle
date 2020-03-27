@@ -6,7 +6,7 @@ export const CartListItem = (props) => {
     const [orderedQuantity, setorderedQuantity] = useState(props.orderedQuantity)
     const value = useContext(MainContext)
     const { cart, setCart, removeItem} = value.cart
-    const {getCartTotal, setCartTotal} = value.cartTotal
+    const {getCartTotal} = value.cartTotal
     const [modalOptions, setModalOptions] = useState({isOpen: false, itemId: null})
 
     const modalStyle = {
@@ -27,6 +27,7 @@ export const CartListItem = (props) => {
         alignItems: 'center',
         flexDirection: 'column'
         }}
+        
     function addQuantity() {
         let items = cart;
         items[props.itemIndex].orderedQuantity = items[props.itemIndex].orderedQuantity + 1;

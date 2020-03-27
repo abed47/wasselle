@@ -35,6 +35,7 @@ export const MainContextProvider = props => {
 
     useEffect(() => {
         getCartTotal(cart)
+        console.log(cart)
     },[cart])
 
     function getCartTotal(arr){
