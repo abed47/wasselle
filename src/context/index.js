@@ -3,9 +3,12 @@ import React,{createContext, useState, useEffect} from 'react';
 export const MainContext = createContext();
 
 export const MainContextProvider = props => {
+    let cartStorage = JSON.parse(localStorage.getItem('cart'));
+    let cartItems = cartStorage === null || cartStorage == undefined ? []: cartStorage
+
     const [page, setPage] = useState();
     const [UserObject,setUser] = useState(null);
-    const [cart, setCart] = useState([]);
+    const [cart, setCart] = useState(cartItems);
     const [cartTotal, setCartTotal] = useState(0);
     const [isSignedIn, setSindedIn] = useState()
     function removeItem(itemid){
@@ -28,6 +31,7 @@ export const MainContextProvider = props => {
 
     useEffect(() => {
         getCartTotal(cart)
+        localStorage.setItem('cart',JSON.stringify(cart))
     },[cart])
 
     useEffect(() => {

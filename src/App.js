@@ -7,6 +7,7 @@ import {Home} from './components/Home';
 import {TopBar} from './components/TopBar';
 import {MainContextProvider} from './context';
 import {Category} from './components/Category';
+import {CheckOutPage} from './components/CheckOutPage'
 import './App.scss';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 function App() {
@@ -21,6 +22,7 @@ function App() {
                 <Route path="/categories" component={Categories}/>
                 <Route path="/profile" component={Profile}/>
                 <Route path="/category/:id" component={Category} />
+                <Route path="/checkout" component={CheckOutPage}/>
             </Switch>
           <BottomNav />
         </div>
