@@ -5,7 +5,7 @@ import {AiOutlineHome} from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 export const CategoryListItem = (props) => {
     return (
-        <Link to={`/category/${props.categoryId}`} className="category__list__item">
+        <Link to={`/category/${props.id}`} className="category__list__item">
             <span className="list__item__icon" >{getIcon(props.iconName)}</span>
             <span className="list__item__title">{props.title}</span>
         </Link>

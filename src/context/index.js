@@ -29,6 +29,10 @@ export const MainContextProvider = props => {
         setCart(updatedCart)
     }
 
+    function additems(item){
+        console.log(item)
+    }
+
     useEffect(() => {
         getCartTotal(cart)
     },[cart])
@@ -41,7 +45,7 @@ export const MainContextProvider = props => {
         setCartTotal(total)
     }
     return (
-        <MainContext.Provider value={{page : {page,setPage}, cart: {cart, setCart, removeItem},cartTotal:{cartTotal,getCartTotal,setCartTotal}}}>
+        <MainContext.Provider value={{page : {page,setPage}, cart: {cart, setCart, removeItem, additems},cartTotal:{cartTotal,getCartTotal,setCartTotal}}}>
             {props.children}
         </MainContext.Provider>
     )
