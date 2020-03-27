@@ -246,6 +246,7 @@ body,html{
 }
 
 .cart{
+    padding-bottom: 50px;
     &__item{
         @include no-select;
         border-radius: 11px;

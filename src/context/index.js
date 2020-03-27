@@ -3,27 +3,11 @@ import React,{createContext, useState, useEffect} from 'react';
 export const MainContext = createContext();
 
 export const MainContextProvider = props => {
-    let cartItems = [
-        {
-            name: "grapes",
-            unitPrice: 500,
-            unitMeasure: 'kg',
-            orderedQuantity: 5,
-            imgPath: 'https://www.nogarlicnoonions.com/images/uploads/NEWS/grapes%202.jpg',
-            itemId: '1'
-        },
-        {
-            name: "grapes 2",
-            unitPrice: 500,
-            unitMeasure: 'kg',
-            orderedQuantity: 5,
-            imgPath: 'https://www.nogarlicnoonions.com/images/uploads/NEWS/grapes%202.jpg',
-            itemId: '2'
-        }
-    ]
     const [page, setPage] = useState();
-    const [cart, setCart] = useState(cartItems);
-    const [cartTotal, setCartTotal] = useState(0)
+    const [UserObject,setUser] = useState(null);
+    const [cart, setCart] = useState([]);
+    const [cartTotal, setCartTotal] = useState(0);
+    const [isSignedIn, setSindedIn] = useState()
     function removeItem(itemid){
         let updatedCart = cart.filter(item => item.itemId !== itemid);
         setCart(updatedCart)
@@ -46,6 +30,18 @@ export const MainContextProvider = props => {
         getCartTotal(cart)
     },[cart])
 
+    useEffect(() => {
+        if(isSignedIn && UserObject){
+            return
+        }else if(isSignedIn && !UserObject && localStorage.getItem('user')){
+            let user = JSON.parse(localStorage.getItem('user'));
+            setUser(user)
+        }else if(!UserObject){
+            let user = JSON.parse(localStorage.getItem('user'))
+            setUser(user)
+        }
+    },[UserObject])
+
     function getCartTotal(arr){
         let total = 0;
         arr.forEach(item => {
@@ -54,7 +50,12 @@ export const MainContextProvider = props => {
         setCartTotal(total)
     }
     return (
-        <MainContext.Provider value={{page : {page,setPage}, cart: {cart, setCart, removeItem, additems},cartTotal:{cartTotal,getCartTotal,setCartTotal}}}>
+        <MainContext.Provider value={{
+            page : {page,setPage},
+            cart: {cart, setCart, removeItem, additems},
+            cartTotal:{cartTotal,getCartTotal,setCartTotal},
+            user:{UserObject,setUser,isSignedIn,setSindedIn}
+            }}>
             {props.children}
         </MainContext.Provider>
     )
