@@ -20,7 +20,6 @@ export const Categories = () => {
                 placeHolderArray.push(obj)
         })})
         .then(() => {
-            console.log(placeHolderArray)
             setCategories(placeHolderArray)
         })
     }
