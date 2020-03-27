@@ -28,7 +28,12 @@ export const Category = ({match}) => {
     },[])
 
     function showModal(productProps){
+        productProps.handleClose = handleClose
         setSelectedItem({isOpen: true, productProps})
+    }
+
+    function handleClose(){
+        setSelectedItem({isOpen:false,productProps: {}})
     }
 
     return (

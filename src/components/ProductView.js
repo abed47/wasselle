@@ -22,7 +22,7 @@ export const ProductView = props => {
 
     return (
         <div className="product__display">
-            <span className="product__display__close"><FaTimes/></span>
+            <span className="product__display__close" onClick={() => props.selectedItem.handleClose()}><FaTimes/></span>
             <img src={props.selectedItem.imgPath}/>
             <div className="product__display__name">
                 <span className="product__display__name__title" >{props.selectedItem.name}</span>
