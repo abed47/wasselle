@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { FaMinus, FaPlus, FaTrashAlt } from 'react-icons/fa'
 import { MainContext } from './../context';
 import Modal from 'react-modal'
@@ -6,7 +6,8 @@ export const CartListItem = (props) => {
     const [orderedQuantity, setorderedQuantity] = useState(props.orderedQuantity)
     const value = useContext(MainContext)
     const { cart, setCart, removeItem} = value.cart
-    const [modalOptions, setModalOptions] = useState({isOpen: true, itemId: null})
+    const {getCartTotal, setCartTotal} = value.cartTotal
+    const [modalOptions, setModalOptions] = useState({isOpen: false, itemId: null})
 
     const modalStyle = {
         overlay:{
@@ -36,17 +37,31 @@ export const CartListItem = (props) => {
     function deduceQuantity() {
         let items = cart;
         items[props.itemIndex].orderedQuantity = items[props.itemIndex].orderedQuantity - 1;
+        if(items[props.itemIndex].orderedQuantity < 1){
+            items[props.itemIndex].orderedQuantity = 0
+        }
         setCart(items)
         setorderedQuantity(cart[props.itemIndex].orderedQuantity)
     }
 
+    function cancelRemove(){
+        setModalOptions({isOpen:false,itemId:null})
+    }
+
+    function confirmRemoveItem(id){
+        removeItem(id);
+        setModalOptions({isOpen:false,itemId: null})
+    }
+
     return (
         <div className="cart__item_wrapper">
-                <Modal style={modalStyle} isOpen={false}>
+                <Modal 
+                ariaHideApp={false}
+                style={modalStyle} isOpen={modalOptions.isOpen}>
                     <p className="modal__title">Are you sure you want to remove this is item?</p>
                     <div className="modal__buttons__container">
-                        <button className="button__cancel">Cancel</button>
-                        <button className="button__confirm">Yes</button>
+                        <button className="button__cancel" onClick={() => {cancelRemove()}} >Cancel</button>
+                        <button className="button__confirm" onClick={() => {confirmRemoveItem(props.itemId)}} >Yes</button>
                     </div>
                 </Modal>
             <MainContext.Consumer>
@@ -65,9 +80,14 @@ export const CartListItem = (props) => {
                                 <span className="item__title" >{props.name}</span>
                                 <span className="item__unit__price" > L.L {props.unitPrice}/{props.unitMeasure}</span>
                                 <div className="item__quantity__controls">
-                                    <span className="control__add" onClick={() => deduceQuantity()}> <FaMinus /> </span>
+                                    <span className="control__add" onClick={() => {
+                                        getCartTotal(cart)
+                                        deduceQuantity()
+                                    }}> <FaMinus /> </span>
                                     <span className="control__quantity"> {orderedQuantity} </span>
-                                    <span className="control__deduce" onClick={() => addQuantity()}> <FaPlus /> </span>
+                                    <span className="control__deduce" onClick={() => {
+                                        getCartTotal(cart)
+                                        addQuantity()}}> <FaPlus /> </span>
                                 </div>
                             </div>
                         </div>

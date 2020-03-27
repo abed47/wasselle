@@ -1,9 +1,16 @@
-import React, {useState, useEffect} from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import React, {useState, useEffect,useContext} from 'react';
+import { Link } from 'react-router-dom';
+import {MainContext} from './../context';
 import {CategoryComponent} from './CategoryComponent';
 import {ProductItem} from './ProductItem';
 export const Home = () => {
 
+    const contextValues = useContext(MainContext)
+    const {setPage} = contextValues.page
+
+    useEffect(() => {
+        setPage('home')
+    })
     
     return(
         <main className="home">

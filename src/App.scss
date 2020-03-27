@@ -413,6 +413,27 @@ body,html{
         font-family: $base-font-bold;
         background-color: $base-color;
     }
+
+    &__checkout{
+        color: $base-color;
+        padding: 6px 7px;
+        border: none;
+        border-radius: 4px;
+        font-size: 18px;
+        font-family: $base-font-bold;
+        background-color: rgb(250, 250, 250);
+        box-shadow: 1px 1px 5px rgba(0,0,0,0.2);
+        @include no-select;
+        outline: none;
+
+        &:active{
+            background-color: rgb(233, 233, 233);
+        }
+
+        &:hover{
+            cursor: pointer;
+        }
+    }
 }
 
 .modal__title{
@@ -427,4 +448,16 @@ body,html{
     display: flex;
     width: 100%;
     justify-content: space-around;
+}
+
+
+
+/*==============================================CHECKOUT TOPBAR========================================*/
+.checkout__topbar{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: 0 10px;
+    align-items: center;
+    outline: none;
 }

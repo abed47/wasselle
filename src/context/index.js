@@ -22,9 +22,26 @@ export const MainContextProvider = props => {
         }
     ]
     const [page, setPage] = useState();
-    const [cart, setCart] = useState(cartItems)
+    const [cart, setCart] = useState(cartItems);
+    const [cartTotal, setCartTotal] = useState(0)
+    function removeItem(itemid){
+        let updatedCart = cart.filter(item => item.itemId !== itemid);
+        setCart(updatedCart)
+    }
+
+    useEffect(() => {
+        getCartTotal(cart)
+    },[cart])
+
+    function getCartTotal(arr){
+        let total = 0;
+        arr.forEach(item => {
+            total = total + (item.unitPrice * item.orderedQuantity)
+        })
+        setCartTotal(total)
+    }
     return (
-        <MainContext.Provider value={{page : {page,setPage}, cart: {cart, setCart}}}>
+        <MainContext.Provider value={{page : {page,setPage}, cart: {cart, setCart, removeItem},cartTotal:{cartTotal,getCartTotal,setCartTotal}}}>
             {props.children}
         </MainContext.Provider>
     )

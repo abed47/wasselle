@@ -1,6 +1,7 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {firebaseConfig} from './../firebase';
 import firebase from 'firebase'
+import {MainContext} from './../context'
 import StyledFirbaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import { useHistory } from 'react-router-dom';
 if(!firebase.apps.length)
@@ -9,6 +10,8 @@ if(!firebase.apps.length)
 }
 export const Profile = () => {
     const history = useHistory();
+    const contextValues = useContext(MainContext)
+    const {setPage} = contextValues.page
     const [isSignedIn, setSindedIn] = useState(false)
     const uiConfig = {
         signInFlow: "popup",
@@ -29,7 +32,7 @@ export const Profile = () => {
     }
 
     const handleLogin = async () => {
-        let userObj = new Object();
+        let userObj = {};
         userObj = await firebase.auth().currentUser;
         localStorage.setItem('user',JSON.stringify(userObj));
         history.push('/profile');
@@ -41,6 +44,10 @@ export const Profile = () => {
         })
     }, [firebase.auth().currentUser])
 
+    useEffect(() => {
+        console.log('sldjf')
+        setPage('profile')
+    },[])
     return(
         <div className="profile">
             {!isSignedIn ? 
