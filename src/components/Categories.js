@@ -8,13 +8,35 @@ export const Categories = () => {
     const {setPage} = contextValues.page
     const [categories, setCategories] = useState([])
     
+    async function getCategories(){
+        let placeHolderArray = [];
+        await db.collection('categories')
+        .get()
+        .then(snapshot => {
+            snapshot.forEach(item => {
+                let obj = item.data();
+                obj.id = item.id
+                placeHolderArray.push(obj)
+        })})
+        .then(() => {
+            console.log(placeHolderArray)
+            setCategories(placeHolderArray)
+        })
+    }
     useEffect(() => {
         setPage('categories')
-        
-    })
+        getCategories()
+    },[])
+
     return(
         <div className="categories">
-            <CategoryListItem iconName="bottle" title="Test Icon" />
+            {
+                categories.length == 0 ?
+                 (<div>Loading</div>) :
+                categories.map(category => {
+                    return(<CategoryListItem key={category.id} iconName={category.iconName} title={category.name} id={category.id} />)
+                })
+            }
         </div>
     )
 }
