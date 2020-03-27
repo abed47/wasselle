@@ -496,6 +496,20 @@ body,html{
     align-items: center;
     justify-items: center;
     grid-template-columns: 50% 50%;
+    padding-top: 10px;
+    padding-bottom: 50px;
+
+    .sweet-loading{
+        width: 100%;
+        height: 80vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        grid-column-start: 1; 
+        grid-column-end: 4; 
+        grid-row-start: 1; 
+        grid-row-end: 3; 
+    }
 
     .product__view{
         width: 60%;
