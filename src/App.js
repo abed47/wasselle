@@ -8,6 +8,7 @@ import {TopBar} from './components/TopBar';
 import {MainContextProvider} from './context';
 import {Category} from './components/Category';
 import {CheckOutPage} from './components/CheckOutPage'
+import {OrderHistory} from './components/OrderHistory'
 import './App.scss';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 function App() {
@@ -23,6 +24,7 @@ function App() {
                 <Route path="/profile" component={Profile}/>
                 <Route path="/category/:id" component={Category} />
                 <Route path="/checkout" component={CheckOutPage}/>
+                <Route path="/orderHistory/:id" component={OrderHistory}/>
             </Switch>
           <BottomNav />
         </div>

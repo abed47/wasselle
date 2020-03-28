@@ -149,6 +149,10 @@ export const CheckOutPage = () => {
         if(UserObject){
             setUser(JSON.parse(localStorage.getItem('user')))
         }
+
+        if(!cart.length){
+            history.push('/cart')
+        }
         setPage('checkout')
     },[]);
 
@@ -174,17 +178,22 @@ export const CheckOutPage = () => {
             ariaHideApp={false}
             style={{
                 content : {
-                    top                   : '50%',
-                    left                  : '50%',
-                    right                 : 'auto',
-                    bottom                : 'auto',
-                    marginRight           : '-50%',
-                    transform             : 'translate(-50%, -50%)'
+                    top: '50%',
+                    left: '50%',
+                    right: 'auto',
+                    bottom: 'auto',
+                    marginRight: '-50%',
+                    transform: 'translate(-50%, -50%)',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    flexDirection: 'column',
                 }
             }} 
             isOpen={showError}
         >
-            <FaExclamationTriangle/>
+            <FaExclamationTriangle className="error__svg" />
+            <p>Error!</p>
         </Modal>
             <div className="checkout__container">
                 <div className="checkout__items">
