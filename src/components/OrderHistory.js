@@ -109,10 +109,10 @@ export const OrderHistory = ({match}) => {
                !orderList.length ? null :
                orderList.map(item => {
                return <Link to={`/orderView/${item.id}`} key={item.id} className="orderhistory__item">
-                   <span>{item.id.substring(0,5)} ...</span>
-                   <span>{getDate(item.date)}</span>
-               <span>{item.status}{getIcon(item.status)}</span>
-               </Link>
+                        <span className="orderhistory__item__id">{item.id.substring(0,5)} ...</span>
+                        <span className="orderhistory__item__date">{getDate(item.date)}</span>
+                        <span className="orderhistory__item__status">{item.status}{getIcon(item.status)}</span>
+                    </Link>
                })
            }
        </div>

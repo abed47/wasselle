@@ -9,6 +9,7 @@ import {MainContextProvider} from './context';
 import {Category} from './components/Category';
 import {CheckOutPage} from './components/CheckOutPage'
 import {OrderHistory} from './components/OrderHistory'
+import {OrderView} from './components/OrderView';
 import './App.scss';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 function App() {
@@ -25,6 +26,7 @@ function App() {
                 <Route path="/category/:id" component={Category} />
                 <Route path="/checkout" component={CheckOutPage}/>
                 <Route path="/orderHistory/:id" component={OrderHistory}/>
+                <Route path="/orderView/:id" component={OrderView} />
             </Switch>
           <BottomNav />
         </div>
