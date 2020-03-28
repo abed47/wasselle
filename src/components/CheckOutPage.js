@@ -45,10 +45,17 @@ export const CheckOutPage = () => {
                     setShowLoading(false)
                     setCart([])
                     return history.push('/profile')
+                }).catch(err => {
+                    setShowError(true)
+                    setTimeout(() => {
+                        setShowError(false);
+                        history.push('/cart')
+                    },2000)
                 })
+                return
             }
 
-            await ref.add(user).then(async v => {
+            await ref.doc(user.uid).set(user).then(async v => {
                 let order = {
                     cart: JSON.stringify(cart),
                     date: new Date().getTime(),
@@ -59,11 +66,27 @@ export const CheckOutPage = () => {
                     setShowLoading(false)
                     setCart([])
                     return history.push('/profile')
+                }).catch(err => {
+                    setShowError(true)
+                    setTimeout(() => {
+                        setShowError(false);
+                        history.push('/cart')
+                    },2000)
                 })
+            }).catch(err => {
+                setShowError(true)
+                setTimeout(() => {
+                    setShowError(false);
+                    history.push('/cart')
+                },2000)
             })
             
         }).catch(err => {
-            console.log(err)
+            setShowError(true)
+            setTimeout(() => {
+                setShowError(false);
+                history.push('/cart')
+            },2000)
         })
     }
 
