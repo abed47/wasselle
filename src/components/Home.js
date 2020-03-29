@@ -2,9 +2,13 @@ import React, {useState, useEffect,useContext} from 'react';
 import { Link } from 'react-router-dom';
 import {MainContext} from './../context';
 import {CategoryComponent} from './CategoryComponent';
-import {ProductItem} from './ProductItem';
 import {firebase} from './../firebase';
 import {Preloader} from './Preloader';
+import Modal from 'react-modal';
+import {ProductView} from './ProductView';
+import {ClimbingBoxLoader} from 'react-spinners';
+import {ProductItem} from './ProductItem';
+
 export const Home = () => {
     let fs = firebase.firestore();
     const contextValues = useContext(MainContext)
@@ -12,6 +16,8 @@ export const Home = () => {
     const [mOrdered,setMOrdered] = useState([]);
     const [mViewd, setMViewed] = useState([]);
     const [rAdded, setRAdded] = useState([]);
+    const [selectedItem, setSelectedItem] = useState({isOpen: false,productProps:null})
+    const [isloading, setIsLoading] = useState(true)
 
     async function getData(){
         let ref = fs.collection("items");
@@ -61,11 +67,23 @@ export const Home = () => {
                 obj.id = doc.id;
                 rAddedItems.push(obj);
             })
-        }).then(() => {
             setRAdded(rAddedItems)
+
+        }).then(() => {
         }).catch(err => {
             console.log(err)
         })
+        console.log(rAdded,mViewd,mOrdered)
+        setIsLoading(false)
+    }
+
+    function showModal(productProps){
+        productProps.handleClose = handleClose
+        setSelectedItem({isOpen: true, productProps})
+    }
+
+    function handleClose(){
+        setSelectedItem({isOpen:false,productProps: {}})
     }
 
     useEffect(() => {
@@ -75,11 +93,16 @@ export const Home = () => {
     
     return(
         <main className="home">
-
+            <Modal 
+            isOpen={selectedItem.isOpen}
+            ariaHideApp={false}>
+                <ProductView
+                selectedItem={selectedItem.productProps}
+                />
+            </Modal>
             {
-                rAdded.length !== 0 && mViewd.length !== 0 && mOrdered.length !== 0 ?
-                <Preloader /> :
-                <>
+                isloading ?
+                <Preloader /> : <>
                     <div className="home__categories">
                     <div className="home__section_title">
                         <p className="title">Categories</p>
@@ -100,7 +123,20 @@ export const Home = () => {
                         <p className="title">Most Ordered</p>
                     </div>
                     <div className="home__section__item__list">
-                    <ProductItem img="https://cdn.vox-cdn.com/thumbor/1lkbiwsmSbovu-HAyjWeZTcGQo8=/0x0:1920x1280/1200x800/filters:focal(807x487:1113x793)/cdn.vox-cdn.com/uploads/chorus_image/image/57340051/apples_2811968_1920.0.jpg" itemName="some item" itemPrice="500"/>
+                        {
+                            mOrdered.map(item => {
+                                return  <ProductItem
+                                handleClick={()=>showModal(item)} 
+                                key={item.id}
+                                quantity={item.quantity}
+                                categoryId={item.categoryId}
+                                imgPath={item.imgPath}
+                                imgAlt={item.imgAlt}
+                                itemName={item.name}
+                                itemPrice={item.unitPrice}
+                                itemDesc={item.description}/>
+                            })
+                        }
                     </div>
                 </section>
     
@@ -109,7 +145,21 @@ export const Home = () => {
                         <p className="title">Most Viewed</p>
                     </div>
                     <div className="home__section__item__list">
-                    <ProductItem img="https://cdn.vox-cdn.com/thumbor/1lkbiwsmSbovu-HAyjWeZTcGQo8=/0x0:1920x1280/1200x800/filters:focal(807x487:1113x793)/cdn.vox-cdn.com/uploads/chorus_image/image/57340051/apples_2811968_1920.0.jpg" itemName="some item" itemPrice="500"/>
+                        {
+                            !mViewd.length ? <div>fdsf</div> :
+                            mViewd.map(item => {
+                            return  <ProductItem
+                            handleClick={()=>showModal(item)} 
+                            key={item.id}
+                            quantity={item.quantity}
+                            categoryId={item.categoryId}
+                            imgPath={item.imgPath}
+                            imgAlt={item.imgAlt}
+                            itemName={item.name}
+                            itemPrice={item.unitPrice}
+                            itemDesc={item.description}/>
+                            })
+                        }
                     </div>
                 </section>
     
@@ -118,7 +168,20 @@ export const Home = () => {
                         <p className="title">Recently Added</p>
                     </div>
                     <div className="home__section__item__list">
-                    <ProductItem img="https://cdn.vox-cdn.com/thumbor/1lkbiwsmSbovu-HAyjWeZTcGQo8=/0x0:1920x1280/1200x800/filters:focal(807x487:1113x793)/cdn.vox-cdn.com/uploads/chorus_image/image/57340051/apples_2811968_1920.0.jpg" itemName="some item" itemPrice="500"/>
+                        {
+                                rAdded.map(item => {
+                                return  <ProductItem
+                                handleClick={()=>showModal(item)} 
+                                key={item.id}
+                                quantity={item.quantity}
+                                categoryId={item.categoryId}
+                                imgPath={item.imgPath}
+                                imgAlt={item.imgAlt}
+                                itemName={item.name}
+                                itemPrice={item.unitPrice}
+                                itemDesc={item.description}/>
+                            })
+                        }
                     </div>
                 </section>
                 </>

@@ -120,6 +120,12 @@ body,html{
         display: flex;
         padding-left: 10px;
         overflow-x: scroll;
+
+        .product__view{
+            &:hover{
+                cursor: pointer;
+            }
+        }
     }
 }
 

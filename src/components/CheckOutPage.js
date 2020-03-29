@@ -45,7 +45,7 @@ export const CheckOutPage = () => {
                 await ordersRef.add(order).then(v => {
                     setShowLoading(false)
                     setCart([])
-                    return history.push('/orderHistory')
+                    return history.push('/cart')
                 }).catch(err => {
                     setShowError(true)
                     setTimeout(() => {
@@ -67,7 +67,7 @@ export const CheckOutPage = () => {
                 await ordersRef.add(order).then(v => {
                     setShowLoading(false)
                     setCart([])
-                    return history.push('/orderHistory')
+                    return history.push('/cart')
                 }).catch(err => {
                     setShowError(true)
                     setTimeout(() => {
