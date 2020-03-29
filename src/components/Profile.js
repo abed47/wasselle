@@ -3,8 +3,10 @@ import {firebaseConfig} from './../firebase';
 import firebase from 'firebase'
 import {MainContext} from './../context'
 import StyledFirbaseAuth from 'react-firebaseui/StyledFirebaseAuth';
-import { useHistory } from 'react-router-dom';
-import userPlaceholder from './../assets/images/user-placeholder.jpeg'
+import { useHistory, Link } from 'react-router-dom';
+import {FaTruck, FaWhatsapp} from 'react-icons/fa';
+import {GoInfo} from 'react-icons/go'
+import LogoPng from './../assets/images/logo-no-bg.svg'
 if(!firebase.apps.length)
 {
     firebase.initializeApp({firebaseConfig})
@@ -17,8 +19,6 @@ export const Profile = () => {
     const uiConfig = {
         signInFlow: "popup",
         signInOptions:[
-            firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-            firebase.auth.EmailAuthProvider.PROVIDER_ID,
             firebase.auth.PhoneAuthProvider.PROVIDER_ID
         ],
         callbacks: {
@@ -56,8 +56,11 @@ export const Profile = () => {
         <div className="profile">
             {isSignedIn !== false? 
             (
-            <div className="profile__containter">
-            <p>this is the Profile</p>
+            <div className="profile__container">
+            <img src={LogoPng} className="profile__container__logo"/>
+            <Link to={`/orderHistory/${!JSON.parse(localStorage.getItem('user')) ? '' : JSON.parse(localStorage.getItem('user')).uid  }`} className="profile__container__link">Order history <FaTruck /></Link>
+            <a href="https://wa.me/96176402094" className="profile__container__link">Contact Support <FaWhatsapp /></a>
+            <a href="https://www.revision-lb.com" className="profile__container__link">About Us <GoInfo /></a>
             <button className="button__logout" onClick={() => handleLogout()}>logout</button>
             </div>
             ) :

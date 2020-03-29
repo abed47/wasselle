@@ -500,6 +500,25 @@ body,html{
             cursor: pointer;
         }
     }
+
+    &__logout{
+        border: none;
+        color: white;
+        background-color: rgb(180, 71, 71);
+        font-family: $base-font-bold;
+        border-radius: 11px;
+        font-size: 15px;
+        padding: 5% 7%;
+        outline: none;
+        margin-top: 10px;
+        &:active{
+            background-color: rgb(155, 42, 42);
+        }
+
+        &:hover{
+            cursor: pointer;
+        }
+    }
 }
 
 .error__message{
@@ -529,7 +548,6 @@ body,html{
 .error__svg{
     color: rgb(169, 172, 43);
 }
-
 
 /*=====================================CHECKOUT TOPBAR===========================*/
 .checkout__topbar{
@@ -789,7 +807,7 @@ body,html{
 
 }
 
-/*=================================================ORDER HISTORY=========================================*/
+/*======================================ORDER HISTORY=============================*/
 .orderhistory{
     display: flex;
     flex-direction: column;
@@ -829,7 +847,7 @@ body,html{
 }
 
 
-/*==================================================ORDER VIEW==========================================*/
+/*=======================================ORDER VIEW===============================*/
 .order__view{
     display: flex;
     justify-content: center;
@@ -871,4 +889,42 @@ body,html{
 
 
 
+}
+
+
+/*=======================================PROFILE==================================*/
+.profile{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 70%;
+
+        &__logo{
+            width: 80%;
+        }
+
+        &__link{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            text-decoration: none;
+            color: #333;
+            background-color: white;
+            padding: 10px 10px;
+            box-shadow: 1px 2px 5px rgba(0,0,0,0.2);
+            border-radius: 4px;
+            margin: 10px 2px;
+
+            svg{
+                color: $base-color
+            }
+        }
+    }
 }
