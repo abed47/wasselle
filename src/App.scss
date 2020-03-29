@@ -814,6 +814,17 @@ body,html{
         &:hover{
             cursor: pointer;
         }
+
+        &__status{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+
+            svg{
+                color: $base-color;
+                margin-left: 5px;
+            }
+        }
     }
 }
 
