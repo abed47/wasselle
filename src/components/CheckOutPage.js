@@ -34,6 +34,7 @@ export const CheckOutPage = () => {
         .get()
         .then(async doc => {
             if(doc.exists){
+                console.log(user.uid)
                 let order = {
                     cart: JSON.stringify(cart),
                     date: new Date().getTime(),
@@ -44,7 +45,7 @@ export const CheckOutPage = () => {
                 await ordersRef.add(order).then(v => {
                     setShowLoading(false)
                     setCart([])
-                    return history.push('/profile')
+                    return history.push('/orderHistory')
                 }).catch(err => {
                     setShowError(true)
                     setTimeout(() => {
@@ -62,10 +63,11 @@ export const CheckOutPage = () => {
                     status: 'pending',
                     uid: user.uid
                 }
+
                 await ordersRef.add(order).then(v => {
                     setShowLoading(false)
                     setCart([])
-                    return history.push('/profile')
+                    return history.push('/orderHistory')
                 }).catch(err => {
                     setShowError(true)
                     setTimeout(() => {
@@ -127,6 +129,7 @@ export const CheckOutPage = () => {
             u.building = buildingName;
             u.street = streetName;
             localStorage.setItem('user', JSON.stringify(u))
+            setUser(u)
             return checkout()
         }
         checkout()

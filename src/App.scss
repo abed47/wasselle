@@ -816,3 +816,48 @@ body,html{
         }
     }
 }
+
+
+/*==================================================ORDER VIEW==========================================*/
+.order__view{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    &__data{
+        width: 100%;
+        padding: 10px 10px 50px 10px;
+        text-align: center;
+        &__list__item{
+            margin: 10px 0;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: white;
+            padding: 10px 0;
+            border-radius: 7px;
+            box-shadow: 1px 2px 4px rgba(0,0,0,0.2);
+            color: #333;
+            
+            img{
+                height: 2rem;
+                border-radius: 4px;
+                box-shadow: 1px 2px 3px  rgba(0,0,0,0.2);
+            }
+        }
+
+        &__total{
+            display: block;
+            margin: 15px 0px;
+            padding: 5px 0;
+        }
+        &__date{
+            display: block;
+            margin: 15px 0px;
+            padding: 5px 0;
+        }
+    }
+
+
+
+}

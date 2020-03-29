@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import {FaRegClock, FaExclamationTriangle} from 'react-icons/fa'
 import { AiOutlineFileDone} from 'react-icons/ai'
-import {AiOutlineAlert} from 'react-icons/ai'
 import {firebase} from './../firebase';
 import { Link } from 'react-router-dom';
 import Modal from 'react-modal';
-import {MainContext} from './../context';
 import {ClockLoader} from 'react-spinners'
 export const OrderHistory = ({match}) => {
     const [showLoading, setShowLoading] = useState(true)
