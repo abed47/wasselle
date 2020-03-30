@@ -34,12 +34,12 @@ export const CheckOutPage = () => {
         .get()
         .then(async doc => {
             if(doc.exists){
-                console.log(user.uid)
                 let order = {
                     cart: JSON.stringify(cart),
                     date: new Date().getTime(),
                     status: 'pending',
-                    uid: user.uid
+                    uid: user.uid,
+                    user: user
                 }
 
                 await ordersRef.add(order).then(v => {
@@ -61,7 +61,8 @@ export const CheckOutPage = () => {
                     cart: JSON.stringify(cart),
                     date: new Date().getTime(),
                     status: 'pending',
-                    uid: user.uid
+                    uid: user.uid,
+                    user: user
                 }
 
                 await ordersRef.add(order).then(v => {
@@ -93,8 +94,17 @@ export const CheckOutPage = () => {
     }
 
     function validate(){
+        if(user === null){
+            history.push('/profile')
+            return
+        }
         if(!user.uid){
             setUser(JSON.parse(localStorage.getItem('user')))
+            if(Object.keys(user).length === 0){
+                setNameError(true)
+                console.log(user)
+                return
+            }
         }
 
         if(!user.displayName && !displayName){
@@ -216,7 +226,7 @@ export const CheckOutPage = () => {
                 </div>
                 <span className="checkout__user">
                     {
-                        user.displayName ? user.displayName :
+                        user && user.displayName ? user.displayName :
                         <span className="checkout__input__group">
                             {
                                 nameError ? <span className="error__message" >*field required</span> : null
@@ -231,7 +241,7 @@ export const CheckOutPage = () => {
                 </span>
                 <span className="checkout__phone">
                     {
-                        user.phoneNumber ? user.phoneNumber :
+                        user && user.phoneNumber ? user.phoneNumber :
                         <span className="checkout__input__group">
                             <Link className="button__primary__outline" to="/profile">Login</Link>
                         </span>
@@ -239,7 +249,7 @@ export const CheckOutPage = () => {
                 </span>
 
                 {
-                    user.street ? user.street:
+                    user && user.street ? user.street:
                     (
                         <span className="checkout__input__group">
                             {
@@ -255,7 +265,7 @@ export const CheckOutPage = () => {
                 }
 
                 {
-                    user.building ? user.building :
+                    user && user.building ? user.building :
                     (
                         <span className="checkout__input__group">
                             {
@@ -271,7 +281,7 @@ export const CheckOutPage = () => {
                 }
 
                 {
-                    user.floor ? user.floor : 
+                    user && user.floor ? user.floor : 
                     (
                         <span className="checkout__input__group">                            
                             {
