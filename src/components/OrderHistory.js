@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {FaRegClock, FaExclamationTriangle} from 'react-icons/fa'
+import {FaRegClock, FaExclamationTriangle, FaTimesCircle} from 'react-icons/fa'
 import { AiOutlineFileDone} from 'react-icons/ai'
 import {firebase} from './../firebase';
 import { Link } from 'react-router-dom';
@@ -16,6 +16,7 @@ export const OrderHistory = ({match}) => {
         console.log(match.params.id)
         let placeHolderArr = orderList;
         await ordersRef.where('uid', '==', `${match.params.id}`)
+        .orderBy('date','desc')
         .get()
         .then(docs => {
             if(docs.empty){
@@ -44,10 +45,10 @@ export const OrderHistory = ({match}) => {
         switch (iconName){
             case 'pending':
                 return <FaRegClock />
-                break;
             case 'done':
                 return <AiOutlineFileDone/>
-                break;
+            default:
+                return <FaTimesCircle/>
         }
     }
     

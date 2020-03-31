@@ -93,7 +93,7 @@ export const OrderView = ({match}) => {
                     {
                         JSON.parse(data.cart).map(item => {
                             return <span key={item.itemId} className="order__view__data__list__item">
-                                        <img src={item.imgPath}/>
+                                        <img src={item.imgPath} alt="item img" />
                                         <span>{item.name}</span>
                                         <span>x{item.orderedQuantity}</span>
                                         <span>{item.unitPrice}</span>

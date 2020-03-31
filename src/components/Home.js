@@ -73,7 +73,6 @@ export const Home = () => {
         }).catch(err => {
             console.log(err)
         })
-        console.log(rAdded,mViewd,mOrdered)
         setIsLoading(false)
     }
 
@@ -146,7 +145,7 @@ export const Home = () => {
                     </div>
                     <div className="home__section__item__list">
                         {
-                            !mViewd.length ? <div>fdsf</div> :
+                            !mViewd.length ? <div></div> :
                             mViewd.map(item => {
                             return  <ProductItem
                             handleClick={()=>showModal(item)} 
