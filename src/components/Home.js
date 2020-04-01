@@ -17,13 +17,29 @@ export const Home = () => {
     const [mViewd, setMViewed] = useState([]);
     const [rAdded, setRAdded] = useState([]);
     const [selectedItem, setSelectedItem] = useState({isOpen: false,productProps:null})
-    const [isloading, setIsLoading] = useState(true)
+    const [isloading, setIsLoading] = useState(true);
+    const [categories,setCategories] = useState([])
 
     async function getData(){
         let ref = fs.collection("items");
+        let catRef = fs.collection('categories')
         let mostVItems = mViewd;
         let mostOItems = mOrdered;
         let rAddedItems = rAdded;
+        let catHolder = categories;
+
+        await catRef
+        .where('isFeatured','==',true)
+        .get()
+        .then(docs => {
+            docs.forEach(doc => {
+                let obj = doc.data();
+                obj.id = doc.id;
+                catHolder.push(obj);
+            })
+        }).then(() => {
+            setCategories(catHolder)
+        })
 
         await ref
         .where('isMostO','==', true)
@@ -110,10 +126,11 @@ export const Home = () => {
                         </p>
                     </div>
                     <div className="home__category">
-                        <CategoryComponent icon="house" title="House Holds"/>
-                        <CategoryComponent icon="cheese" title="Chilled"/>
-                        <CategoryComponent icon="bread" title="Pasteries"/>
-                        <CategoryComponent icon="fruit" title="fruit"/>
+                        {
+                            categories.map(item => {
+                                return <CategoryComponent icon={item.iconName} title={item.name} id={item.id}/>
+                            })
+                        }
                     </div>
                 </div>
     

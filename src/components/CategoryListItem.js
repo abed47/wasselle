@@ -1,7 +1,43 @@
 import React from 'react';
-import {GiBread, GiFruitBowl, GiMedicalPackAlt} from 'react-icons/gi';
-import {FaWineBottle} from 'react-icons/fa';
-import {AiOutlineHome} from 'react-icons/ai';
+import {
+    GiBread, 
+    GiFruitBowl, 
+    GiMedicalPackAlt,
+    GiCheeseWedge,
+    GiWrappedSweet,
+    GiCupcake,
+    GiCarrot,
+    GiNoodles,
+    GiCakeSlice,
+    GiWheat
+} from 'react-icons/gi';
+import {
+    FaWineBottle,
+    FaBreadSlice,
+    FaBirthdayCake,
+    FaPrescriptionBottleAlt,
+    FaCarrot,
+    FaAppleAlt,
+    FaLemon,
+    FaPepperHot,
+} from 'react-icons/fa';
+import {AiOutlineHome, AiOutlineCoffee} from 'react-icons/ai';
+import {
+    IoIosBasket,
+    IoIosCart,
+    IoIosHeart,
+    IoIosPaw,
+    IoIosWine,
+    IoMdMedical,
+    IoIosGift,
+    
+} from 'react-icons/io'
+import {
+    TiLightbulb,
+    TiLeaf,
+    TiPhoneOutline,
+    TiThermometer,
+} from 'react-icons/ti'
 import { Link } from 'react-router-dom';
 export const CategoryListItem = (props) => {
     return (
@@ -12,22 +48,65 @@ export const CategoryListItem = (props) => {
     )
 }
 
-function getIcon(iconName){
-    switch (iconName){
-        case 'fruit':
-            return <GiFruitBowl/>;
-            break;
-        case 'bread':
-            return <GiBread/>;
-            break;
-        case 'bottle':
-            return <FaWineBottle/>
-            break;
+function getIcon(name){
+    switch(name){
         case 'house':
-            return <AiOutlineHome/>
-            break;
+            return (<AiOutlineHome/>);
+        case 'bottle':
+            return (<FaWineBottle/>);
+        case 'cheese':
+            return (<GiCheeseWedge/>)
+        case 'bread':
+            return (<FaBreadSlice/>)
+        case 'fruit':
+            return (<GiFruitBowl/>)
+        case 'candy':
+            return (<GiWrappedSweet/>)
+        case 'cup-cake':
+            return (<GiCupcake/>)
+        case 'cake-slice':
+            return (<GiCakeSlice/>)
+        case 'cake-bday':
+            return (<FaBirthdayCake/>)
         case 'medical':
-            return <GiMedicalPackAlt/>
-            break;        
+            return (<IoMdMedical/>)
+        case 'medicen':
+            return (<FaPrescriptionBottleAlt/>)
+        case 'basket':
+            return (<IoIosBasket/>)
+        case 'cart':
+            return (<IoIosCart/>)
+        case 'gift':
+            return (<IoIosGift/>)
+        case 'carrot':
+            return (<FaCarrot/>)
+        case 'carrot-alt':
+            return (<GiCarrot/>)
+        case 'apple':
+            return (<FaAppleAlt/>)
+        case 'lemon':
+            return (<FaLemon/>)
+        case 'pepper':
+            return (<FaPepperHot/>)
+        case 'wheat':
+            return (<GiWheat/>)
+        case 'animal':
+            return (<IoIosPaw/>)
+        case 'glass':
+            return (<IoIosWine/>)
+        case 'bulb':
+            return (<TiLightbulb/>)
+        case 'leaf':
+            return (<TiLeaf/>)
+        case 'phone-hand':
+            return (<TiPhoneOutline/>)
+        case 'thermometer':
+            return (<TiThermometer/>)
+        case 'noodles':
+            return (<GiNoodles/>)
+        case 'cup':
+            return (<AiOutlineCoffee/>)
+        default:
+            return(<IoIosHeart/>)
     }
 }
