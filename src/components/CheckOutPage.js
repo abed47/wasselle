@@ -5,6 +5,49 @@ import {firebase} from './../firebase';
 import Modal from 'react-modal';
 import {ClockLoader} from 'react-spinners'
 import {FaExclamationTriangle} from 'react-icons/fa'
+import AWS from 'aws-sdk';
+
+let sesConfig = {
+    apiVersion: "2012-10-17",
+    region: 'eu-west-2',
+    accessKeyId:'AKIA6EQ4Y6RRUR4ZJZGZ',
+    secretAccessKey:'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'
+}
+let params = {
+    Source: 'revision.lb1@gmail.com',
+    Destination: {
+        ToAddresses: [
+            'revision.lb1@gmail.com',
+            'abed472011@gmail.com',
+            'ghinask1@gmail.com',
+        ]
+    },
+    ReplyToAddresses: [
+        'revision.lb1@gmail.com'
+    ],
+    Message: {
+        Body:{
+            Html: {
+                Charset: "UTF-8",
+                Data: "new order recieved!"
+            }
+        },
+        Subject: {
+            Charset: "UTF-8",
+            Data: "WASSELLE"
+        }
+    }
+}
+
+function sendMail(){
+    try{
+        new AWS.SES(sesConfig).sendEmail(params).promise().then(res => {
+            console.log(res)
+        })
+    }catch(e){
+        console.log(e)
+    }
+}
 
 export const CheckOutPage = () => {
     const contextValues = useContext(MainContext);
@@ -45,6 +88,7 @@ export const CheckOutPage = () => {
                 await ordersRef.add(order).then(v => {
                     setShowLoading(false)
                     setCart([])
+                    sendMail()
                     return history.push('/cart')
                 }).catch(err => {
                     setShowError(true)
@@ -68,6 +112,7 @@ export const CheckOutPage = () => {
                 await ordersRef.add(order).then(v => {
                     setShowLoading(false)
                     setCart([])
+                    sendMail()
                     return history.push('/cart')
                 }).catch(err => {
                     setShowError(true)
@@ -158,6 +203,7 @@ export const CheckOutPage = () => {
         return total;
     }
 
+
     useEffect(() => {
         if(UserObject){
             setUser(JSON.parse(localStorage.getItem('user')))
@@ -167,6 +213,7 @@ export const CheckOutPage = () => {
             history.push('/cart')
         }
         setPage('checkout')
+
     },[]);
 
     return(

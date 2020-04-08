@@ -128,7 +128,7 @@ export const Home = () => {
                     <div className="home__category">
                         {
                             categories.map(item => {
-                                return <CategoryComponent icon={item.iconName} title={item.name} id={item.id}/>
+                                return <CategoryComponent key={item.id} icon={item.iconName} title={item.name} id={item.id}/>
                             })
                         }
                     </div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {FaRegClock, FaExclamationTriangle, FaTimesCircle} from 'react-icons/fa'
+import {FaRegClock, FaTimesCircle} from 'react-icons/fa'
 import { AiOutlineFileDone} from 'react-icons/ai'
 import {firebase} from './../firebase';
 import { Link } from 'react-router-dom';
@@ -13,7 +13,6 @@ export const OrderHistory = ({match}) => {
     let ordersRef = fs.collection('orders');
     
     async function getOrders(){
-        console.log(match.params.id)
         let placeHolderArr = orderList;
         await ordersRef.where('uid', '==', `${match.params.id}`)
         .orderBy('date','desc')

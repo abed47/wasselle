@@ -9,7 +9,6 @@ export const OrderView = ({match}) => {
     const history = useHistory();
     const [data, setData] = useState({});
     const [showLoading, setShowLoading] = useState(true);
-    const [showError, setShowError] = useState(false)
     
     async function getData(){
         let ref = await fs.collection('orders');
@@ -18,9 +17,7 @@ export const OrderView = ({match}) => {
             setData(doc.data())
         }).catch(err => {
             setShowLoading(false);
-            setShowError(true);
             setTimeout(() => {
-                setShowError(false);
                 history.push('/profile');
             },2000)
         })

@@ -7,7 +7,7 @@ export const Preloader = () => {
             <div className="preloader__container">
                 <BarLoader height="4px" width="100%" color="#5CC062" />
 
-                <img src={LOGOIMG}/>
+                <img src={LOGOIMG} alt="logo"/>
             </div>
         </div>
     )

@@ -14,12 +14,14 @@ if(!firebase.apps.length)
 export const Profile = () => {
     const history = useHistory();
     const contextValues = useContext(MainContext)
-    const {isSignedIn,setSindedIn,UserObject, setUser} = contextValues.user
+    const {isSignedIn,setSindedIn, setUser} = contextValues.user
     const {setPage} = contextValues.page
     const uiConfig = {
         signInFlow: "popup",
         signInOptions:[
-            firebase.auth.PhoneAuthProvider.PROVIDER_ID
+            {provider: firebase.auth.PhoneAuthProvider.PROVIDER_ID,
+            defaultCountry: 'LB'
+        }
         ],
         callbacks: {
             signInSuccessWithAuthResult: () => handleLogin()
@@ -57,7 +59,7 @@ export const Profile = () => {
             {isSignedIn !== false? 
             (
             <div className="profile__container">
-            <img src={LogoPng} className="profile__container__logo"/>
+            <img src={LogoPng} alt="logo" className="profile__container__logo"/>
             <Link to={`/orderHistory/${!JSON.parse(localStorage.getItem('user')) ? '' : JSON.parse(localStorage.getItem('user')).uid  }`} className="profile__container__link">Order history <FaTruck /></Link>
             <a href="https://wa.me/96176402094" className="profile__container__link">Contact Support <FaWhatsapp /></a>
             <a href="https://www.revision-lb.com" className="profile__container__link">About Us <GoInfo /></a>

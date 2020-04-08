@@ -1,4 +1,4 @@
-import React,{useState, useContext, useEffect} from 'react';
+import React,{useState, useContext} from 'react';
 import {FaPlus, FaMinus, FaTimes} from 'react-icons/fa'
 import { MainContext } from '../context';
 export const ProductView = props => {

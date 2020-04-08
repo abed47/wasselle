@@ -17,7 +17,7 @@ export const TopBar = () => {
                 (
                     <CheckoutTopBar />
                 ) :
-                (<div> <img className="topbar__logo" src={LogoPng}/> SafeShop</div>)
+                (<div> <img className="topbar__logo" alt="logo" src={LogoPng}/> SafeShop</div>)
             }
         </div>
     )
