@@ -1,5 +1,5 @@
 import React, {useState, useEffect,useContext} from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import {MainContext} from './../context';
 import {CategoryComponent} from './CategoryComponent';
 import {firebase} from './../firebase';
@@ -8,7 +8,26 @@ import Modal from 'react-modal';
 import {ProductView} from './ProductView';
 import {ClimbingBoxLoader} from 'react-spinners';
 import {ProductItem} from './ProductItem';
+const validateLocation = () => {
+    let locationPermission = localStorage.getItem('location-permission');
+    let selectedStore = localStorage.getItem('selected-store');
 
+    if(
+        locationPermission === null 
+        || locationPermission === undefined || locationPermission === '' 
+        || !locationPermission
+    ){
+        return(<Redirect to="/getPermissions"/>)
+    }
+
+    if(
+        selectedStore === null
+        || selectedStore === undefined
+        || !selectedStore
+    ){
+        return (<Redirect to="/selectStore"/>)
+    }
+}
 export const Home = () => {
     let fs = firebase.firestore();
     const contextValues = useContext(MainContext)
@@ -102,12 +121,15 @@ export const Home = () => {
     }
 
     useEffect(() => {
-        getData()
-        setPage('home')
-    },[])
+        setTimeout(()=>{getData()
+        setPage('home')},2000)
+    })
     
     return(
         <main className="home">
+            {
+                validateLocation()
+            }
             <Modal 
             isOpen={selectedItem.isOpen}
             ariaHideApp={false}>

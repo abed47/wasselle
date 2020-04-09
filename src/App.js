@@ -12,7 +12,9 @@ import {OrderHistory} from './components/OrderHistory'
 import {OrderView} from './components/OrderView';
 import {LocationComponent} from './components/LocationComponent'
 import './App.scss';
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Switch, Route, useHistory} from 'react-router-dom';
+import PermissionsComponent from './components/PermissionsComponent';
+import StoreSelect from './components/StoreSelect';
 function App() {
   return (
     <Router>
@@ -28,8 +30,13 @@ function App() {
                 <Route path="/checkout" component={CheckOutPage}/>
                 <Route path="/orderHistory/:id" component={OrderHistory}/>
                 <Route path="/orderView/:id" component={OrderView} />
-                {/*TODO: change map options*/}
+                {/*TODO: change map options
+                  TODO: add redirect method if permission is set*/}
                 <Route path="/map" component={LocationComponent}/>
+                {/*TODO: add redirect method if location is set */}
+                <Route path="/getPermissions" component={PermissionsComponent}/>
+                {/*TODO: add redirect method0 */}
+                <Route path="/storeSelect" component={StoreSelect}/>
             </Switch>
           <BottomNav />
         </div>

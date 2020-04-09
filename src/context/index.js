@@ -4,13 +4,15 @@ export const MainContext = createContext();
 
 export const MainContextProvider = props => {
     let cartStorage = JSON.parse(localStorage.getItem('cart'));
-    let cartItems = cartStorage === null || cartStorage == undefined ? []: cartStorage
-
+    let cartItems = cartStorage === null || cartStorage === undefined ? []: cartStorage
     const [page, setPage] = useState();
     const [UserObject,setUser] = useState(null);
     const [cart, setCart] = useState(cartItems);
     const [cartTotal, setCartTotal] = useState(0);
-    const [isSignedIn, setSindedIn] = useState()
+    const [isSignedIn, setSindedIn] = useState();
+
+    
+
     function removeItem(itemid){
         let updatedCart = cart.filter(item => item.itemId !== itemid);
         setCart(updatedCart)
