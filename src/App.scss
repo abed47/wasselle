@@ -981,3 +981,43 @@ body,html{
         margin: 30px 0;
     }
 }
+
+
+.marker{
+    text-align: center;
+    width: 40px;
+    img{
+        width: 100%;
+    }
+
+    p{
+        margin: 2px 0;
+    }
+
+}
+
+
+.confirm_modal{
+    position: absolute;
+    z-index: 555;
+    bottom: -200px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    left: 25%;
+    padding: 20px;
+    box-shadow: 1px 2px 6px rgba(0,0,0,0.2);
+    border-radius: 11px;
+    transition: bottom 200ms ease-in-out;
+    .info{
+        display: flex;
+        img{
+            width: 50px;
+            margin: 0 5px;
+        }
+    }
+
+    &.active{
+        bottom: 50px
+    }
+}

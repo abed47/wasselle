@@ -16,6 +16,18 @@ export class PermissionsComponent extends Component {
         navigator.permissions.query({name: 'geolocation'}).then(res => {
             if (res.state === 'granted') {
                 navigator.geolocation.getCurrentPosition((res) => {
+                    if(res.coords){
+                        let coords = {
+                            lat: res.coords.latitude,
+                            lng: res.coords.longitude
+                        }
+                        localStorage.setItem('coords', JSON.stringify(coords));
+                        localStorage.setItem('location-permission',true);
+                        this.setState({redirectToMap: true})
+                    }
+                })
+              } else if (res.state === 'prompt') {
+                if(res.coords){
                     let coords = {
                         lat: res.coords.latitude,
                         lng: res.coords.longitude
@@ -23,10 +35,7 @@ export class PermissionsComponent extends Component {
                     localStorage.setItem('coords', JSON.stringify(coords));
                     localStorage.setItem('location-permission',true);
                     this.setState({redirectToMap: true})
-                })
-              } else if (res.state === 'prompt') {
-                navigator.geolocation.getCurrentPosition((res) => {
-                })
+                }
 
               } else if (res.state === 'denied') {
                   this.setState({redirect: true})

@@ -25,7 +25,7 @@ const validateLocation = () => {
         || selectedStore === undefined
         || !selectedStore
     ){
-        return (<Redirect to="/selectStore"/>)
+        return (<Redirect to="/map"/>)
     }
 }
 export const Home = () => {
