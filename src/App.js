@@ -10,6 +10,7 @@ import {Category} from './components/Category';
 import {CheckOutPage} from './components/CheckOutPage'
 import {OrderHistory} from './components/OrderHistory'
 import {OrderView} from './components/OrderView';
+import {LocationComponent} from './components/LocationComponent'
 import './App.scss';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 function App() {
@@ -27,6 +28,8 @@ function App() {
                 <Route path="/checkout" component={CheckOutPage}/>
                 <Route path="/orderHistory/:id" component={OrderHistory}/>
                 <Route path="/orderView/:id" component={OrderView} />
+                {/*TODO: change map options*/}
+                <Route path="/map" component={LocationComponent}/>
             </Switch>
           <BottomNav />
         </div>
