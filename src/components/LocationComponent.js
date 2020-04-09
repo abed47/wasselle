@@ -1,15 +1,19 @@
 import React, { Component } from 'react'
 import { GoogleMap, LoadScript } from '@react-google-maps/api'
-
+import {Redirect} from 'react-router-dom'
+let coords = localStorage.getItem('coords');
 export class LocationComponent extends Component {
     
   render() {
       
      return (
+
       <LoadScript
         id="script-loader"
-        googleMapsApiKey="AIzaSyDR9jPnqKadrINQ4auhI14oZvmTTbJHdM4"
       >
+        {
+            coords === null || coords === undefined ? <Redirect to="/getPermissions"/> : null
+        }
         <GoogleMap
         mapContainerClassName="masp"
         onLoad={map => {
