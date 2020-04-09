@@ -214,7 +214,7 @@ export const CheckOutPage = () => {
         }
         setPage('checkout')
 
-    },[]);
+    },[UserObject, cart.length, setPage, history]);
 
     return(
         <div className="checkout">   

@@ -1,8 +1,6 @@
 import React from 'react';
 import {
-    GiBread, 
     GiFruitBowl, 
-    GiMedicalPackAlt,
     GiCheeseWedge,
     GiWrappedSweet,
     GiCupcake,

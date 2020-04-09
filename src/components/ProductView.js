@@ -35,7 +35,7 @@ export const ProductView = props => {
     return (
         <div className="product__display">
             <span className="product__display__close" onClick={() => props.selectedItem.handleClose()}><FaTimes/></span>
-            <img src={props.selectedItem.imgPath}/>
+            <img src={props.selectedItem.imgPath} alt="item img"/>
             <div className="product__display__name">
                 <span className="product__display__name__title" >{props.selectedItem.name}</span>
                 <span className="product__display__name__price">{props.selectedItem.unitPrice}/{props.selectedItem.unitMeasure}</span>

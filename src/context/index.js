@@ -4,7 +4,7 @@ export const MainContext = createContext();
 
 export const MainContextProvider = props => {
     let cartStorage = JSON.parse(localStorage.getItem('cart'));
-    let cartItems = cartStorage === null || cartStorage == undefined ? []: cartStorage
+    let cartItems = cartStorage === null || cartStorage === undefined ? []: cartStorage
 
     const [page, setPage] = useState();
     const [UserObject,setUser] = useState(null);
@@ -44,7 +44,7 @@ export const MainContextProvider = props => {
             let user = JSON.parse(localStorage.getItem('user'))
             setUser(user)
         }
-    },[UserObject])
+    },[UserObject, isSignedIn])
 
     function getCartTotal(arr){
         let total = 0;

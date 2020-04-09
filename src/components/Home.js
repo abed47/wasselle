@@ -6,7 +6,6 @@ import {firebase} from './../firebase';
 import {Preloader} from './Preloader';
 import Modal from 'react-modal';
 import {ProductView} from './ProductView';
-import {ClimbingBoxLoader} from 'react-spinners';
 import {ProductItem} from './ProductItem';
 
 export const Home = () => {
@@ -104,7 +103,7 @@ export const Home = () => {
     useEffect(() => {
         getData()
         setPage('home')
-    },[])
+    })
     
     return(
         <main className="home">

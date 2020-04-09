@@ -25,7 +25,7 @@ export const Category = ({match}) => {
     }
     useEffect(() => {
         getItems()
-    },[])
+    })
 
     function showModal(productProps){
         productProps.handleClose = handleClose
@@ -51,7 +51,6 @@ export const Category = ({match}) => {
                 <div className="sweet-loading">
                     <ClimbingBoxLoader
                     css={`justify-self: center`}
-                    size={150}
                     color={"#5CC062"}
                     loading={true}
                     size={18}

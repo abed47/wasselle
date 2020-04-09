@@ -51,7 +51,7 @@ export const Profile = () => {
             setSindedIn(false)
         }
         setPage('profile')
-        },[])
+        })
 
 
         return(

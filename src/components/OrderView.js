@@ -65,7 +65,7 @@ export const OrderView = ({match}) => {
 
     useEffect(() => {
         getData()
-    },[])
+    })
     return (
         <div className="order__view">
             <Modal

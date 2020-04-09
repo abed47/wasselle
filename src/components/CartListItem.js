@@ -75,7 +75,7 @@ export const CartListItem = (props) => {
 
                         <div className="cart__item">
                             <div className="cart__item__image" >
-                                <img src={props.imgPath} />
+                                <img src={props.imgPath} alt="item img" />
                             </div>
                             <div className="cart__item__details">
                                 <span className="item__title" >{props.name}</span>

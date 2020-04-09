@@ -8,7 +8,7 @@ export const Cart = () => {
 
     useEffect(() => {
         setPage('cart')
-    },[])
+    })
     return(
         <div className="cart">
             {

@@ -26,7 +26,7 @@ export const Categories = () => {
     useEffect(() => {
         setPage('categories')
         getCategories()
-    },[])
+    })
 
     return(
         <div className="categories">
@@ -36,7 +36,6 @@ export const Categories = () => {
                     <div className="sweet-loading">
                     <ClimbingBoxLoader
                       css={`justify-self: center`}
-                      size={150}
                       color={"#5CC062"}
                       loading={true}
                       size={18}

@@ -79,7 +79,7 @@ export const OrderHistory = ({match}) => {
     }
     useEffect(() => {
         getOrders()
-    }, [])
+    })
 
     return(
        <div className="orderhistory">
